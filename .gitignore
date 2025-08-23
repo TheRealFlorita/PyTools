@@ -5,4 +5,5 @@
 /QWindowKit/*
 .DS_Store
 build-release.bat
+deploy.bat
 CMakeLists.txt.*
