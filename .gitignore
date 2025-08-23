@@ -1,0 +1,8 @@
+/build
+/install
+/Icons/*
+/PugiXml/*
+/QWindowKit/*
+.DS_Store
+build-release.bat
+CMakeLists.txt.*
