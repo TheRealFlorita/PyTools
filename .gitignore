@@ -1,8 +1,9 @@
 /build
 /install
-/Icons/*
-/PugiXml/*
-/QWindowKit/*
+/PugiXml/Include/*
+/PugiXml/Source/*
+/QWindowKit/Include/*
+/QWindowKit/Lib/*
 .DS_Store
 build-release.bat
 deploy.bat

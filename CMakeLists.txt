@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
 find_package(Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
 
-set(QWindowKit_DIR "${CMAKE_CURRENT_SOURCE_DIR}/QWindowKit/lib/cmake/QWindowKit/")
+set(QWindowKit_DIR "${CMAKE_CURRENT_SOURCE_DIR}/QWindowKit/Lib/cmake/QWindowKit/")
 find_package(QWindowKit COMPONENTS Core Widgets REQUIRED)
 
 set(INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install/")
