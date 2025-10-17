@@ -66,7 +66,7 @@ public:
 
         configs["color/theme-border"] = "rgb(50,50,50)";
         configs["color/theme-title-bar"] = "rgb(10,10,10)";
-        configs["color/theme-highlight"] = "rgb(105,100,200)";
+        configs["color/theme-highlight"] = "rgb(117,115,215)";
         configs["color/theme-groupbox"] = "rgb(40,40,40)";
         configs["color/theme-light"] = "rgb(50,50,50)";
         configs["color/theme-medium"] = "rgb(30,30,30)";

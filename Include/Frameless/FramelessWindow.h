@@ -187,6 +187,8 @@ protected:
                 increaseDpiScale();
             else if((keyEvent->key() == Qt::Key_Minus) && (keyEvent->modifiers() & Qt::ControlModifier) && keyScaling)
                 decreaseDpiScale();
+            else if((keyEvent->key() == Qt::Key_0) && (keyEvent->modifiers() & Qt::ControlModifier) && keyScaling)
+                setDpiScale(screen()->logicalDotsPerInchX() / 96.0);
             break;
         }
         default:

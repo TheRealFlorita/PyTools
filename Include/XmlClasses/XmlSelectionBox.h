@@ -203,6 +203,8 @@ public:
                     XmlModule::generateXmlObject(module, boxlayout, child_node, rowheight, labelwidth, false);
             show();
         }
+
+        QTimer::singleShot(0, this, [this](){ window()->setStyleSheet(window()->styleSheet()); });
     }
 
     void setChecked(bool checked)
