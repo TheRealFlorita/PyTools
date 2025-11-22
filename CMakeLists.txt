@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 
 project(PyTools LANGUAGES C CXX)
 
@@ -11,8 +11,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
-find_package(Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
+set(QT_NO_PRIVATE_MODULE_WARNING ON)
+
+find_package(QT NAMES Qt6 COMPONENTS Core CorePrivate Gui GuiPrivate Network Widgets WidgetsPrivate REQUIRED)
+find_package(Qt6 COMPONENTS Core CorePrivate Gui GuiPrivate Network Widgets WidgetsPrivate REQUIRED)
 
 set(QWindowKit_DIR "${CMAKE_CURRENT_SOURCE_DIR}/QWindowKit/Lib/cmake/QWindowKit/")
 find_package(QWindowKit COMPONENTS Core Widgets REQUIRED)
@@ -23,8 +25,6 @@ file(GLOB SOURCES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.cpp" "Source/*.cpp" 
 file(GLOB HEADERS RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}" "*.h" "Include/*.h" "Include/HiDpiClasses/*.h" "Include/Frameless/*.h" "PugiXml/Include/*.hpp" "Include/XmlClasses/*.h")
 
 include_directories(
-    "${Qt6Core_PRIVATE_INCLUDE_DIRS}"
-    "${Qt6Gui_PRIVATE_INCLUDE_DIRS}"
     "${CMAKE_CURRENT_SOURCE_DIR}/Include"
     "${CMAKE_CURRENT_SOURCE_DIR}/Include/Frameless"
     "${CMAKE_CURRENT_SOURCE_DIR}/Include/HiDpiClasses"
@@ -40,9 +40,12 @@ add_definitions(-DWIN32_LEAN_AND_MEAN -D_CRT_SECURE_NO_WARNINGS -DUNICODE -D_UNI
 
 target_link_libraries(PyTools
     PRIVATE Qt6::Core
+    PRIVATE Qt6::CorePrivate
     PRIVATE Qt6::Gui
+    PRIVATE Qt6::GuiPrivate
     PRIVATE Qt6::Network
     PRIVATE Qt6::Widgets
+    PRIVATE Qt6::WidgetsPrivate
     PUBLIC QWindowKit::Widgets)
 
 if(MSVC)

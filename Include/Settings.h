@@ -96,8 +96,8 @@ public:
 
         /* Load stylesheet */
         QFile file(applicationPath + "/styleSheet.css");
-        file.open(QFile::ReadOnly);
-        rawStyleSheet = file.readAll();
+        if (file.open(QFile::ReadOnly))
+            rawStyleSheet = file.readAll();
         file.close();
 
         /* Set icon directory */
