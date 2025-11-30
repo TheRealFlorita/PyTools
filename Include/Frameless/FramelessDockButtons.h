@@ -120,12 +120,12 @@ private:
         if (!isChecked())
         {
             painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0.5, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setPen(QPen(QBrush(brush), 0.25, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setPen(QPen(QBrush(brush), 0.0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 
         painter.setBrush(brush);
@@ -143,12 +143,12 @@ private:
         if (!isChecked())
         {
             painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0.5, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setPen(QPen(QBrush(brush), 0.25, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setPen(QPen(QBrush(brush), 0.0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 
         painter.setBrush(brush);
@@ -166,12 +166,12 @@ private:
         if (!isChecked())
         {
             painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0.5, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setPen(QPen(QBrush(brush), 0.25, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, true);
-            painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
+            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setPen(QPen(QBrush(brush), 0.0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 
         painter.setBrush(brush);

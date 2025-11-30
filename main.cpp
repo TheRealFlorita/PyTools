@@ -6,8 +6,10 @@ Settings settings;
 
 int main(int argc, char *argv[])
 {
+    /* qputenv("QT_ENABLE_HIGHDPI_SCALING", QByteArray("1")); */
+
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
-    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::RoundPreferFloor);
+    QApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Floor);
 
     /* Application */
     QApplication a(argc, argv);

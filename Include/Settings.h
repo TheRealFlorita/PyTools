@@ -357,7 +357,7 @@ public:
     {
         QTabBar dummy(parent);
         dummy.setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Minimum);
-        dummy.setStyleSheet(baseStyleSheet);
+        dummy.setStyleSheet(getScaledStyleSheet(1.0));
         dummy.addTab("TeXtpad");
         dummy.ensurePolished();
         return dummy.sizeHint().height();
@@ -420,6 +420,8 @@ private:
 
     static QString cssScale(QString text, double scale)
     {
+        bool hidpi = true;
+
         /* Scale pixel sizes "8px" */
         static QRegularExpression expression;
         expression.setPattern("\\b([0-9]+[.,]?[0-9]*)px\\b");
@@ -429,9 +431,7 @@ private:
             int offset = int(match.capturedStart(0));
             text.remove(offset, match.capturedLength(0));
 
-            int size = match.captured(1).toInt();
-            if (size > 2 || scale > 1.6)
-                size = qRound(match.captured(1).toDouble() * scale);
+            int size = qRound(match.captured(1).toDouble() * scale);
             text.insert(offset, QString::number(size) + "#px");
         }
         text.replace("#px","px");
@@ -456,7 +456,11 @@ private:
 
             double pts = match.captured(1).toDouble();
             pts = 0.5*qRound(2 * std::min(72.0, std::max(6.0, pts * scale)));
-            text.insert(offset, QString::number(qRound(pts*96.0/72.0)) + "px");
+
+            if (hidpi)
+                text.insert(offset, QString::number(qRound(pts*96.0/72.0)) + "px");
+            else
+                text.insert(offset, QString::number(pts) + "#pt");
         }
 
         /* Scale integer point sizes "8pt" */
@@ -480,9 +484,15 @@ private:
                         pt = points[i+1];
                 }
             }
-            text.insert(offset, QString::number(qRound(pt*96.0/72.0)) + "px");
+
+            if (hidpi)
+                text.insert(offset, QString::number(qRound(pt*96.0/72.0)) + "px");
+            else
+                text.insert(offset, QString::number(pts) + "#pt");
         }
 
+        if (!hidpi)
+            text.replace("#pt","pt");
         return text;
     }
 
