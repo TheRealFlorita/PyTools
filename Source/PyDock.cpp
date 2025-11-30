@@ -213,10 +213,10 @@ void PyDock::setBlockFormat()
     else
         font.setFamily(settings.getFontType("regular"));
     charformat.setFont(font);
-
+    charformat.setFontPointSize(0); // for DPI-scaling
     charformat.setFontItalic(cursive);
-    textCursor.setCharFormat(charformat);
 
+    textCursor.setCharFormat(charformat);
     textCursor.insertBlock(blockFormat);
     textCursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::MoveAnchor);
     textCursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
@@ -226,21 +226,7 @@ void PyDock::setBlockFormat()
 
 
 void PyDock::updateDpiScaleTerminal()
-{
-    QTextEdit dummy(this);
-    dummy.setText("TeXtpad");
-
-    if (dummy.fontPointSize() > 0)
-    {
-        terminal->selectAll();
-        terminal->setFontPointSize(dummy.fontPointSize());
-
-        QTextCursor textCursor = terminal->textCursor();
-        textCursor.clearSelection();
-        textCursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
-        terminal->setTextCursor(textCursor);
-    }
-}
+{ }
 
 void PyDock::printRegular()
 {
@@ -303,7 +289,6 @@ void PyDock::resetIndent()
 
 void PyDock::terminalPrint(QString text)
 {
-
     /* Move cursor and anchor to end */
     QTextCursor textCursor = terminal->textCursor();
     textCursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
