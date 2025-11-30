@@ -56,11 +56,12 @@ PyDock::PyDock(PyTools *parent) : FramelessDockWidget(parent)
     terminal->setContentsMargins(0,0,0,0);
     terminal->setMinimumHeight(1);
     setWidget(terminal);
+    connect(this, &PyDock::dpiScaleChanged, this, &PyDock::updateDpiScaleTerminal);
 
     /* Set tab width */
     terminal->ensurePolished();
     QFontMetrics metrics(terminal->font());
-    terminal->setTabStopDistance(2*metrics.horizontalAdvance(" "));
+    terminal->setTabStopDistance(4*metrics.horizontalAdvance(" "));
 
     /* Add drop shadow effect */
     HdShadowEffect *effect = new HdShadowEffect(toolBar, qreal(1.0), qreal(12.0), settings.getColor("drop-shadow/color"));
@@ -91,6 +92,9 @@ PyDock::PyDock(PyTools *parent) : FramelessDockWidget(parent)
     connect(pyProcess, &PyProcess::printRegular, this, &PyDock::printRegular);
     connect(pyProcess, &PyProcess::printBold, this, &PyDock::printBold);
     connect(pyProcess, &PyProcess::printCursive, this, &PyDock::printCursive);
+    connect(pyProcess, &PyProcess::printBoldCursive, this, &PyDock::printBoldCursive);
+    connect(pyProcess, &PyProcess::printProportionalFont, this, &PyDock::printProportional);
+    connect(pyProcess, &PyProcess::printMonospaceFont, this, &PyDock::printMonospace);
     connect(pyProcess, &PyProcess::increaseIndent, this, &PyDock::increaseIndent);
     connect(pyProcess, &PyProcess::decreaseIndent, this, &PyDock::decreaseIndent);
     connect(pyProcess, &PyProcess::resetIndent, this, &PyDock::resetIndent);
@@ -104,6 +108,7 @@ PyDock::PyDock(PyTools *parent) : FramelessDockWidget(parent)
     connect(this, &PyDock::topLevelChanged, this, &PyDock::onScreenChanged);
     connect(this, &PyDock::screenChanged, this, &PyDock::onScreenChanged);
     emit dockingButton->toggled(dockingButton->isChecked());
+
     clearTerminal();
 }
 
@@ -177,6 +182,7 @@ void PyDock::clearTerminal()
     indent = 0.0;
     bold = false;
     cursive = false;
+    monospace = false;
     setBlockFormat();
 
     emit terminalCleared();
@@ -201,6 +207,13 @@ void PyDock::setBlockFormat()
     else
         charformat.setFontWeight(QFont::Normal);
 
+    QFont font = charformat.font();
+    if (monospace)
+        font.setFamily(settings.getFontType("monospace"));
+    else
+        font.setFamily(settings.getFontType("regular"));
+    charformat.setFont(font);
+
     charformat.setFontItalic(cursive);
     textCursor.setCharFormat(charformat);
 
@@ -209,6 +222,24 @@ void PyDock::setBlockFormat()
     textCursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
     textCursor.insertText("");
     QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+}
+
+
+void PyDock::updateDpiScaleTerminal()
+{
+    QTextEdit dummy(this);
+    dummy.setText("TeXtpad");
+
+    if (dummy.fontPointSize() > 0)
+    {
+        terminal->selectAll();
+        terminal->setFontPointSize(dummy.fontPointSize());
+
+        QTextCursor textCursor = terminal->textCursor();
+        textCursor.clearSelection();
+        textCursor.movePosition(QTextCursor::End, QTextCursor::MoveAnchor);
+        terminal->setTextCursor(textCursor);
+    }
 }
 
 void PyDock::printRegular()
@@ -236,6 +267,18 @@ void PyDock::printBoldCursive()
 {
     bold = true;
     cursive = true;
+    setBlockFormat();
+}
+
+void PyDock::printProportional()
+{
+    monospace = false;
+    setBlockFormat();
+}
+
+void PyDock::printMonospace()
+{
+    monospace = true;
     setBlockFormat();
 }
 

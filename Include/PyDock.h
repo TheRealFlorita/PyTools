@@ -23,6 +23,7 @@ private:
     qreal indent = 0.0;
     bool bold = false;
     bool cursive = false;
+    bool monospace = false;
     int barHeight = 30;
     bool dynamicBarHeight = false;
     bool printsEnabled = true;
@@ -48,10 +49,13 @@ public:
     void clearTerminal();    
     void setTextColor(QColor color);
     void setBlockFormat();
+    void updateDpiScaleTerminal();
     void printRegular();
     void printBold();
     void printCursive();
     void printBoldCursive();
+    void printProportional();
+    void printMonospace();
     void increaseIndent();
     void decreaseIndent();
     void resetIndent();

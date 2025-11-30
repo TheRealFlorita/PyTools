@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         QFontDatabase::addApplicationFont(fontfiles.next());
 
     /* Font settings */
-    QFont font;
+    QFont font = QApplication::font();
     font.setStyleStrategy(QFont::StyleStrategy(QFont::PreferAntialias));
     font.setHintingPreference(QFont::PreferDefaultHinting);
     QApplication::setFont(font);

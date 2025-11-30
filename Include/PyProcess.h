@@ -34,6 +34,8 @@ signals:
     void printBold();
     void printCursive();
     void printBoldCursive();
+    void printProportionalFont();
+    void printMonospaceFont();
     void increaseIndent();
     void decreaseIndent();
     void resetIndent();

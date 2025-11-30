@@ -56,7 +56,7 @@ public:
 
         configs["font-type/title"] = "Century Gothic";
         configs["font-type/regular"] = "Segoe UI";
-        configs["font-type/monospace"] = "Segoe UI";
+        configs["font-type/monospace"] = "Consolas";
 
         configs["font-size/small"] = "9.0pt";
         configs["font-size/medium"] = "10.0pt";
@@ -286,6 +286,11 @@ public:
         }
 
         return color;
+    }
+
+    QString getFontType(QString key)
+    {
+        return getValue("font-type/" + key, QVariant("Segoe UI")).toString();
     }
 
     int getLabelHeight(QWidget *parent = Q_NULLPTR)

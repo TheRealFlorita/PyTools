@@ -124,7 +124,7 @@ private:
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setRenderHint(QPainter::Antialiasing, true);
             painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 
@@ -147,7 +147,7 @@ private:
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setRenderHint(QPainter::Antialiasing, true);
             painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 
@@ -170,7 +170,7 @@ private:
         }
         else
         {
-            painter.setRenderHint(QPainter::Antialiasing, false);
+            painter.setRenderHint(QPainter::Antialiasing, true);
             painter.setPen(QPen(QBrush(brush), 0, Qt::SolidLine, Qt::SquareCap, Qt::MiterJoin));
         }
 

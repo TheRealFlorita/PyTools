@@ -552,6 +552,20 @@ void PyProcess::processClientRequest(QLocalSocket *client)
         client->write("succes");
     }
 
+    else if (requestType == "printproportionalfontrequest")
+    {
+        emit printProportionalFont();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+        client->write("succes");
+    }
+
+    else if (requestType == "printmonospacefontrequest")
+    {
+        emit printMonospaceFont();
+        QCoreApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+        client->write("succes");
+    }
+
     else if (requestType == "increaseindentrequest")
     {
         emit increaseIndent();
