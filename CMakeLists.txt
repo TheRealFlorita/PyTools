@@ -13,11 +13,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(QT_NO_PRIVATE_MODULE_WARNING ON)
 
-find_package(QT NAMES Qt6 COMPONENTS Core CorePrivate Gui GuiPrivate Network Widgets WidgetsPrivate REQUIRED)
-find_package(Qt6 COMPONENTS Core CorePrivate Gui GuiPrivate Network Widgets WidgetsPrivate REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Core CorePrivate Gui GuiPrivate Network Widgets WidgetsPrivate)
 
 set(QWindowKit_DIR "${CMAKE_CURRENT_SOURCE_DIR}/QWindowKit/Lib/cmake/QWindowKit/")
-find_package(QWindowKit COMPONENTS Core Widgets REQUIRED)
+find_package(QWindowKit REQUIRED COMPONENTS Core Widgets)
 
 set(INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install/")
 

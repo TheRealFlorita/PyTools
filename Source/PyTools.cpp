@@ -307,7 +307,7 @@ void PyTools::aboutMe()
                         QString::number(__GNUC_MINOR__) + "." + \
                         QString::number(__GNUC_PATCHLEVEL__);
     QString pyversion = PyProcess::getEmbeddedPythonVersion();
-    QString qwkversion = "1.4.1";
+    QString qwkversion = "1.5.1";
 
     if (pyversion.split(" ").length() < 2 || !pyversion.startsWith("Py", Qt::CaseInsensitive))
         pyversion.clear();
